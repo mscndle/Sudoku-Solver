@@ -20,19 +20,6 @@ class Slot implements Comparable<Slot> {
         this.optionsList = new ArrayList<Integer>();
     }
 
-    //
-    //  Place a value on the slot, might not be the final value
-    //
-    public void insertValue(Slot slot, int value) {
-        slot.value = value;
-        //slot.solved = true; //this might be an issue - if the move is not final, how to reverse it back?
-        //check options left - if no options are left, it's final
-
-        if (slot.optionsList.size() == 0) {
-            slot.solved = true;
-        }
-    }
-
     @Override
     public int compareTo(Slot s) {
         int L1 = this.optionsList.size();
@@ -44,14 +31,24 @@ class Slot implements Comparable<Slot> {
 
     }
 
+    @SuppressWarnings("unchecked")
+    public Slot getSlotCopy() {
+
+        Slot clone = new Slot(this.row, this.col, this.value);
+        clone.solved = this.solved;
+        clone.optionsList = (ArrayList<Integer>) this.optionsList.clone();
+
+        return clone;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Slot position: " + this.row + "," + this.col + "\n");
         sb.append("Value of Slot: " + this.value + "\n");
-        sb.append("Options list : " + this.optionsList.toString() + "\n");
+        sb.append("Options list : " + this.optionsList.toString() + "\n\n");
 
-        return sb.toString().trim();
+        return sb.toString();
     }
 }

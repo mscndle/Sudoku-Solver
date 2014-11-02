@@ -46,15 +46,32 @@ public class Board {
 
                 if (s.value == 0) {
                     emptySlots.add(s);
-//
-//                    System.out.println("Added to empty slots list");
-//                    System.out.println(this.slots[i][j].toString());
                 }
             }
         }
 
-//        System.out.println("emptySlots: "  + emptySlots.toString());
         return emptySlots;
+    }
+
+
+    //
+    //  Place a value on the slot, might not be the final value
+    //
+    public void insertValue(Slot slot, int value) {
+        slot.value = value;
+        //slot.solved = true; //this might be an issue - if the move is not final, how to reverse it back?
+        //check options left - if no options are left, it's final
+
+        if (slot.optionsList.size() == 0) {
+            slot.solved = true;
+        }
+    }
+
+    //
+    // Removes a value incorrectly added to the board
+    //
+    public void deleteValue(Slot slot) {
+        slot.value = 0; //remove whatever value was previously there
     }
 
     //

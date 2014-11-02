@@ -27,7 +27,8 @@ public class Main {
 
         Gameplay play = new Gameplay(board);
         play.findEmptySlots();
-        System.out.println(play.toString());
+        play.play();
+
 
 
     }

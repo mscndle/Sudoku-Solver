@@ -22,11 +22,14 @@ public class Main {
 
         Board board = new Board(boardInt);
         System.out.println(board.toString());
+        System.out.println("-----------");
+
 
         Gameplay play = new Gameplay(board);
-        play.solve();
+        play.findEmptySlots();
+        System.out.println(play.toString());
 
-        System.out.println(board.toString());
+
     }
 
     public static void readInputBoard(int[][] board) throws IOException {
